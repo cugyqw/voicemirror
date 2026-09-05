@@ -1,0 +1,30 @@
+# 同声传译器 - 服务端依赖
+#
+# 安装环境：~/inference-env (Python 3.12.3)
+# pip 源：https://pypi.tuna.tsinghua.edu.cn/simple
+# HF 镜像：export HF_ENDPOINT=https://hf-mirror.com
+#
+# ⚠ torch 系列必须从 PyTorch 官方源装，清华源版本会滞后：
+#   pip install torch torchaudio --index-url https://download.pytorch.org/whl/cu130
+#   pip install -r requirements.txt
+
+# ===== 深度学习框架（官方源 cu130）=====
+torch==2.14.0+cu130
+torchaudio==2.11.0+cu130
+
+# ===== 语音识别（FunASR，模型走 modelscope 国内直连）=====
+funasr==1.4.14
+modelscope==1.39.1
+
+# ===== 翻译与模型加载 =====
+transformers==5.16.1
+sentencepiece==0.2.2
+accelerate==1.14.0
+huggingface_hub==1.30.0
+
+# ===== 数值与音频处理 =====
+# 注意：numpy 必须 <2，librosa -> numba 依赖链要求，升级会破坏环境
+numpy==1.26.4
+scipy==1.17.1
+librosa==0.11.0
+soundfile==0.14.0

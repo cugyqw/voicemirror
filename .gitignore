@@ -1,0 +1,49 @@
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+.eggs/
+dist/
+build/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+
+# ===== ESP-IDF 固件 =====
+firmware/build/
+firmware/sdkconfig
+firmware/sdkconfig.old
+firmware/managed_components/
+firmware/dependencies.lock
+firmware/*.bin
+
+# ===== 模型权重（体积大，从 modelscope/hf 拉取，不入库）=====
+models/
+*.bin
+*.onnx
+*.pth
+*.pt
+*.safetensors
+*.gguf
+
+# ===== 音频与参考音色样本 =====
+*.wav
+*.mp3
+*.opus
+*.flac
+*.m4a
+!samples/.gitkeep
+
+# ===== 运行环境 =====
+.env
+.env.*
+*.log
+.DS_Store
+
+# ===== 编辑器 =====
+.vscode/
+.idea/
+*.swp
