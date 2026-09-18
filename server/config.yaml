@@ -1,0 +1,27 @@
+# VoiceMirror 服务端模型配置
+# =====================================================================
+# 换模型只改这里（backend 字段），业务编排层（pipeline）零改动。
+# 可用 backend 见 server/registry.py（或启动后打印 server.factory.available()）。
+# =====================================================================
+
+asr:
+  backend: asr.funasr.paraformer      # asr.funasr.paraformer | asr.funasr.sensevoice
+  model_id: models/funasr_paraformer  # 本地目录（已从 HF 下载）
+  vad_model: models/funasr_vad        # 本地目录
+  model_hub: hf
+  sample_rate: 16000
+
+mt:
+  backend: mt.nllb.transformers       # mt.nllb.transformers | mt.nllb.ct2
+  model_id: facebook/nllb-200-distilled-600M
+  src_lang: cmn_Hans                  # FLORES-200 code
+  tgt_lang: eng_Latn
+  device: cuda
+
+tts:
+  backend: tts.f5                    # tts.f5 | tts.indextts2(待实现)
+  model_dir: models/F5-TTS           # 本地权重目录（含 F5TTS_v1_Base/）
+  ckpt_name: F5TTS_v1_Base           # ckpt 目录名（自动找 model_*.safetensors）
+  ref_audio: models/voice_ref/ref.wav   # 参考音色（3~10s 中文样本）
+  ref_text: "对，这就是我，万人敬仰的太乙真人。其面貌虽说不怎么好看，但是，其才华可谓举世无双。"  # F5 自带 basic_ref_zh 文本
+  out_sample_rate: 16000             # 24k -> 重采样到 16k，与 ASR 对齐
